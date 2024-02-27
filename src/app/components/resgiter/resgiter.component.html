@@ -1,0 +1,35 @@
+<div class="container">
+  <h2 class="register__title my-5">Agregar Nuevo Contacto</h2>
+  <form (ngSubmit)="onSubmit()" [formGroup]="contactForm" class="register__form">
+    <div class="mb-4">
+      <label for="name" class="col-form-label">Name</label>
+      <input type="text" id="name" name="name" class="form-control form-control-lg" required formControlName="name"
+        [value]="contactEdit?.name">
+      <div *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['required']"
+        class="alert alert-danger">Name is required...</div>
+      <div *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['minlength']"
+        class="alert alert-danger">Name must be longer than 3 caracters...</div>
+    </div>
+    <div class="mb-4">
+      <label for="entity" class="col-form-label">Entity</label>
+      <input type="text" id="entity" name="entity" class="form-control form-control-lg" required
+        formControlName="entity" [value]="contactEdit?.entity">
+      <div *ngIf="contactForm.get('entity')?.touched && contactForm.get('entity')?.errors?.['required']"
+        class="alert alert-danger">Entity is required...</div>
+    </div>
+    <div class="mb-4">
+      <label for="email" class="col-form-label">Email</label>
+      <input type="text" id="email" name="email" class="form-control form-control-lg" required formControlName="email"
+        [value]="contactEdit?.name">
+      <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['required']"
+        class="alert alert-danger">Email is required...</div>
+    </div>
+    <div class="mb-4">
+      <button [disabled]="contactForm.invalid" [hidden]="contactEdit" class="btn btn-primary btn-lg"
+        type="submit">Agregar</button>
+      <button [hidden]="!contactEdit" (click)="onEditContact()" class="btn btn-info btn-lg"
+        type="submit">Editar</button>
+    </div>
+  </form>
+</div>
+<!-- {{contactEdit | json}} -->
